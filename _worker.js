@@ -2,8 +2,12 @@ export default {
     async fetch(request, env) {
 		const doh = 'https://cloudflare-dns.com/dns-query'
 		const contype = 'application/dns-message'
+		const endpointPath = '/chfyxj1n3q8utfx1';
 		const { method, headers, url } = request
-		const { host, searchParams } = new URL(url)
+		const { host, pathname, searchParams,} = new URL(url)
+		if (pathname != endpointPath) {
+		  return new Response('Hello World!', { status: 404 });
+	        }
 		if (method == 'GET' && searchParams.has('dns')) {
 			return await fetch(doh + '?dns=' + searchParams.get('dns'), {
 				method: 'GET',
