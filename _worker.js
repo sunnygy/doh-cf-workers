@@ -1,3 +1,4 @@
+export default {
 // 请求路径。请修改此路径，避免该 worker 所有人都能使用。
 const endpointPath = '/dns-query';
 // 上游 DoH 地址。必需是域名，不能是 IP。Cloudflare 有限制。
@@ -69,3 +70,4 @@ async function handleRequest(request) {
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
 });
+};
